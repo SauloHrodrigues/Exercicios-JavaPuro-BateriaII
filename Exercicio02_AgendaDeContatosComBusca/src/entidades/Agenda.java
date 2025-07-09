@@ -38,15 +38,19 @@ public class Agenda {
             String sobrenome = partes[partes.length -1];
             return sobrenome.equalsIgnoreCase(sobreNomeBuscado);
         }).collect(Collectors.toList());
-        if(encontrados.isEmpty()){
-            System.out.println("Não foi encontrado contatos com o sobrenome: "+sobreNomeBuscado.toUpperCase());
-        } else {
-            System.out.println();
-            System.out.println("Contatos com o sobrenome " + sobreNomeBuscado.toUpperCase());
-            for (Contato contato : encontrados) {
-                System.out.println(contato);
-            }
-        }
+         try {
+             if(encontrados.isEmpty()){
+                 throw new ContatoInexistenteException("Não foi encontrado contatos com o sobrenome: "+sobreNomeBuscado.toUpperCase());
+             } else {
+                 System.out.println();
+                 System.out.println("Contatos com o sobrenome " + sobreNomeBuscado.toUpperCase());
+                 for (Contato contato : encontrados) {
+                     System.out.println(contato);
+                 }
+             }
+         } catch (ContatoInexistenteException e){
+             System.out.println("Erro: "+ e.getMessage());
+         }
     }
 
     public void bucarContatoPeloPrimeiroNome(String inicialBuscada){
