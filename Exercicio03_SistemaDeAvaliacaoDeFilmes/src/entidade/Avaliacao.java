@@ -8,7 +8,7 @@ public class Avaliacao {
 
     public Avaliacao(String nomeDoUsuario, int nota, String comentario,Filme filme) {
         this.nomeDoUsuario = nomeDoUsuario;
-        setNota(nota);
+        validarNota(nota);
         this.comentario = comentario;
         this.filmeAvaliado = filme;
     }
@@ -17,11 +17,7 @@ public class Avaliacao {
         return nomeDoUsuario;
     }
 
-    public void setNomeDoUsuario(String nomeDoUsuario) {
-        this.nomeDoUsuario = nomeDoUsuario;
-    }
-
-    public void setNota(int nota) {
+    public void validarNota(int nota) {
         if(nota <0){
             this.nota=0;
         } else if (nota > 10) {
@@ -37,18 +33,6 @@ public class Avaliacao {
 
     public String getComentario() {
         return comentario;
-    }
-
-    public void setComentario(String comentario) {
-        this.comentario = comentario;
-    }
-
-    public Filme getFilmeAvaliado() {
-        return filmeAvaliado;
-    }
-
-    public void setFilmeAvaliado(Filme filmeAvaliado) {
-        this.filmeAvaliado = filmeAvaliado;
     }
 
     @Override
