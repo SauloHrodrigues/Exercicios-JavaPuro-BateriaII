@@ -21,6 +21,10 @@ public class Quarto {
         this.oculpado = false;
     }
 
+    public void ocuparQuarto(){
+        this.oculpado = true;
+    }
+
     public int getNumero() {
         return numero;
     }

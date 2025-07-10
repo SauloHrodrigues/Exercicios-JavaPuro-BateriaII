@@ -1,6 +1,5 @@
 package entidade;
 
-import enuns.Prioridade;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -10,20 +9,11 @@ public class ListaDeTarefas {
     List<Tarefa> tarefas;
 
     public ListaDeTarefas() {
-        this.tarefas= new ArrayList<>();
-    }
-
-    public ListaDeTarefas(Tarefa tarefas) {
         this.tarefas = new ArrayList<>();
-        this.tarefas.add(tarefas);
     }
 
     public void adicionarTarefa(Tarefa tarefa) {
         tarefas.add(tarefa);
-    }
-
-    public void adicionarTarefa(String titulo, String descricao, Prioridade prioridade){
-        adicionarTarefa(new Tarefa(titulo,descricao,prioridade));
     }
 
     public List<Tarefa> ListarTrarefasPorPrioridades(){

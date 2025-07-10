@@ -1,52 +1,57 @@
 package entedade;
 
+import exceptions.ReservaInexistenteException;
+
 public class Reserva {
     private Hospede hospede;
     private Quarto quarto;
     private int dias;
+    private boolean status;
 
     public Reserva(Hospede hospede, Quarto quarto, int dias) {
+        quarto.ocuparQuarto();
+        status = true;
         this.hospede = hospede;
         this.quarto = quarto;
         this.dias = dias;
     }
 
-    public Double calcularValorTotal(){
-        return this.quarto.getTipo().getValorDaDiaria() * this.dias;
+    public void cancelar(){
+        if(status){
+            quarto.liberar();
+            status= false;
+        }  else {
+            throw new RuntimeException("Não há reserva a ser cancelada");
+        }
     }
-
-    public Hospede getHospede() {
-        return hospede;
+    public Double calcularValorTotal(){
+        if(status){
+            return this.quarto.getTipo().getValorDaDiaria() * this.dias;
+        }  else {
+            throw new RuntimeException("Não há reserva a ser calculada");
+        }
     }
 
     public Quarto getQuarto() {
-        return quarto;
-    }
-
-    public int getDias() {
-        return dias;
-    }
-
-    public void setDias(int dias) {
-        this.dias = dias;
-    }
-
-    public void setHospede(Hospede hospede) {
-        this.hospede = hospede;
-    }
-
-    public void setQuarto(Quarto quarto) {
-        this.quarto = quarto;
+        if(status){
+            return quarto;
+        }else{
+            throw new RuntimeException("Não há quarto a ser mostrado.");
+        }
     }
 
     public void mostrarReserva(){
-        System.out.println();
-        System.out.println("Hospede: "+this.hospede.getNome());
-        System.out.println("Quarto: nº. "+this.quarto.getNumero()+" - "
-                +this.quarto.getTipo());
-        System.out.println("Quantidade de dias: "+this.getDias());
-        System.out.printf("Valor da diaria: R$ %.2f%n", this.quarto.getTipo().getValorDaDiaria());
-        System.out.printf("Total a pagar: R$ %.2f%n", calcularValorTotal());
-        System.out.println("****************************************");
+        if(status){
+            System.out.println();
+            System.out.println("Hospede: "+this.hospede.getNome());
+            System.out.println("Quarto: nº. "+this.quarto.getNumero()+" - "
+                    +this.quarto.getTipo());
+            System.out.println("Quantidade de dias: "+this.dias);
+            System.out.printf("Valor da diaria: R$ %.2f%n", this.quarto.getTipo().getValorDaDiaria());
+            System.out.printf("Total a pagar: R$ %.2f%n", calcularValorTotal());
+            System.out.println("****************************************");
+        }else{
+            throw new ReservaInexistenteException("Não há reserva a ser mostrada.");
+        }
     }
 }

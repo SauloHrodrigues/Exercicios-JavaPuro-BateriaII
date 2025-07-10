@@ -2,6 +2,7 @@ import entedade.Hospede;
 import entedade.Quarto;
 import entedade.Reserva;
 import enuns.TipoDeQuarto;
+import exceptions.ReservaInexistenteException;
 
 public class SistemaDeReservaDeHotelPRG {
     public static void main(String[] args) {
@@ -18,5 +19,12 @@ public class SistemaDeReservaDeHotelPRG {
         reserva01.mostrarReserva();
         reserva02.mostrarReserva();
         reserva03.mostrarReserva();
+
+        reserva01.cancelar();
+        try {
+            reserva01.mostrarReserva();
+        } catch (ReservaInexistenteException e){
+            System.out.println("Erro: "+e.getMessage());
+        }
     }
 }
