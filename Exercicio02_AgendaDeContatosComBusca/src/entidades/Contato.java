@@ -27,7 +27,7 @@ public class Contato {
 
     @Override
     public String toString() {
-        return "nome = " + nome +
-                " - telefone = " + telefone;
+        return "nome: " + nome +
+                " - telefone: " + telefone;
     }
 }
