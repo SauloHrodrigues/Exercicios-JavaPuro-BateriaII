@@ -1,6 +1,7 @@
 package entidade;
 
 import enuns.Prioridade;
+import java.util.Objects;
 
 public class Tarefa {
     private String titulo;
@@ -55,5 +56,17 @@ public class Tarefa {
                 ", prioridade=" + prioridade +
                 ", concluida=" + concluida +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Tarefa tarefa)) return false;
+        return Objects.equals(titulo, tarefa.titulo);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(titulo);
     }
 }
