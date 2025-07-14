@@ -1,4 +1,4 @@
-package entedade;
+package entidade;
 
 import enuns.TipoDeQuarto;
 
@@ -44,5 +44,4 @@ public class Quarto {
     public boolean isOculpado() {
         return oculpado;
     }
-
 }
